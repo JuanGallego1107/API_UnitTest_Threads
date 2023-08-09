@@ -1,0 +1,43 @@
+[
+  {
+    "orderId": 2,
+    "status": "En proceso",
+    "orderDate": "2023-08-08",
+    "deliveryDate": "2023-08-08",
+    "products": [{}],
+    "customer": {
+      "id": 3,
+      "name": "Juan",
+      "tier": 1
+    }
+  },
+  {
+    "orderId": 2,
+    "status": "En proceso",
+    "orderDate": "2023-08-08",
+    "deliveryDate": "2023-08-08",
+    "products": [{}],
+    "customer": {
+      "id": 3,
+      "name": "Juan",
+      "tier": 1
+  }
+  },
+  {
+    "orderId": 2,
+    "status": "En proceso",
+    "orderDate": "2023-08-08",
+    "deliveryDate": "2023-08-08",
+    "products": [{}],
+    "customer": {
+      "id": 3,
+      "name": "Juan",
+      "tier": 1
+  }
+  }
+]
+
+
+
+
+
