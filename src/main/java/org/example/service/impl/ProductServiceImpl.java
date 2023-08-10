@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
@@ -59,4 +60,27 @@ public class ProductServiceImpl implements ProductService {
                         maxBy(Comparator.comparing(ProductDto::price))));
     }
 
-}
+
+    @Override
+    public String getCheapestProductThread(){
+        sleepThread(3000);
+        return "¡Hilo terminado! "+getCheapestProduct();
+    }
+
+    @Override
+    public List<ProductDto> getProdFromCategoryApplyDiscountThread() {
+        sleepThread(5000);
+        return getProdFromCategoryApplyDiscount();
+    }
+
+    public void sleepThread(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    }
+
+
+

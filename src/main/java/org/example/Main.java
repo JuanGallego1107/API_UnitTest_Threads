@@ -5,7 +5,9 @@ import org.example.service.ProductService;
 import org.example.service.impl.OrderServiceImpl;
 import org.example.service.impl.ProductServiceImpl;
 
+import java.util.Comparator;
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
 
 public class Main {
     private static ProductService productService;
@@ -28,7 +30,12 @@ public class Main {
                 " \n 8. Promedio de pago en los pedidos en una fecha especifica."+
                 " \n 9. Mapa de datos con registros de pedidos agrupados por cliente."+
                 " \n 10. Producto mas caro por categoria."+
-                " \n 11. Salir.");
+                " \n 11. Implementacion runAsync."+
+                " \n 12. Implementacion supplyAsync. "+
+                " \n 13. Implementacion thenAccept. "+
+                " \n 14. Implementacion thenApply y exceptionally."+
+                " \n 15. Implementacion thenRun."+
+                " \n 16. Salir.");
         opc = x.next();
 
         switch (opc) {
@@ -63,7 +70,33 @@ public class Main {
                 System.out.println(productService.getMostExpensiveProduct());
             }
             case "11" -> {
-                System.out.println("Hasta Pronto");
+                CompletableFuture.runAsync(()-> System.out.println(productService.getCheapestProductThread()));
+                productService.sleepThread(6000);
+                System.out.println("¡Hilo Principal terminado!");
+            }
+            case "12"-> {
+                System.out.println(CompletableFuture.supplyAsync(()-> productService.getProdFromCategoryApplyDiscountThread()).join());
+            }
+            case "13"-> {
+                CompletableFuture.supplyAsync(()-> productService.getCheapestProductThread())
+                        .thenAccept(System.out::println);
+                productService.sleepThread(8000);
+            }
+            case "14" -> {
+                CompletableFuture.supplyAsync(()-> orderService.getSumProductsByDateThread())
+                        .thenApply(result -> result+ orderService.getAvgProductsByDate())
+                        .exceptionally(error -> 0.0)
+                        .thenAccept(System.out::println);
+                orderService.sleepThread(5000);
+            }
+            case "15" -> {
+                CompletableFuture.supplyAsync(()-> orderService.getAvgProductsByDateThread())
+                        .thenAccept(System.out::println)
+                        .thenRun(()-> System.out.println(productService.getCheapestProductThread()));
+                orderService.sleepThread(7000);
+            }
+            case "16" -> {
+                System.out.println("Vuelve Pronto");
             }
             default -> {
                 System.out.println("Ingresa un numero valido para consultar.");

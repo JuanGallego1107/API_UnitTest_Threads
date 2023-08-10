@@ -16,4 +16,8 @@ public interface OrderService {
     Double getAvgProductsByDate();
     Map<Customer,List<OrderDto>> getOrderMapPerClient();
     List<ProductDto> getProdByDateAndTier();
+
+    Double getSumProductsByDateThread();
+    void sleepThread(int millis);
+    Double getAvgProductsByDateThread();
 }

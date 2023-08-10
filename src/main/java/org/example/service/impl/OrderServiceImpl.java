@@ -91,4 +91,32 @@ public class OrderServiceImpl implements OrderService {
                 .toList();
     }
 
+
+
+    @Override
+    public Double getSumProductsByDateThread() {
+        sleepThread(2000);
+        launchException();
+        return getSumProductsByDate();
+    }
+
+    private void launchException() {
+        throw  new RuntimeException("Could not launch");
+    }
+
+    @Override
+    public void sleepThread(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Double getAvgProductsByDateThread() {
+        sleepThread(2000);
+        return getAvgProductsByDate();
+    }
 }
+
